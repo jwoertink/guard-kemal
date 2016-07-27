@@ -1,0 +1,3 @@
+guard 'kemal', path: 'src', file: 'kemal.cr' do
+  watch('src/kemal.cr')
+end
