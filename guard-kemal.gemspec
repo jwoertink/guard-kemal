@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jeremy Woertink"]
   spec.email         = ["jeremywoertink@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{A Kemal guard watcher}
+  spec.description   = %q{A guard plugin to watch a kemal (crystal-lang) app}
+  spec.homepage      = "https://github.com/jwoertink/guard-kemal"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
