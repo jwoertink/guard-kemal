@@ -5,6 +5,7 @@ module Guard
     def initialize(options = {})
       @path = options.fetch(:path, '.')
       @file = options.fetch(:file, 'app.cr')
+      super
     end
 
     def start
