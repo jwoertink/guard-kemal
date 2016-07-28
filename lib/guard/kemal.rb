@@ -15,7 +15,7 @@ module Guard
     end
     
     def stop
-      cmd = `$(killall -s SIGINT "crystal-run-app.tmp")`.chomp.strip
+      cmd = `$(killall -s SIGINT "crystal-run-#{@file.split('.').first}.tmp")`.chomp.strip
       Kernel.fork { exec(cmd) }
     end
 
