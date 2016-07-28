@@ -14,13 +14,15 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install guard-kemal
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+#Guardfile
+guard 'kemal', path: 'src', file: 'server.cr' do
+  watch('src/server.cr')
+end
+```
 
 ## Development
 
