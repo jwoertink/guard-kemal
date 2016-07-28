@@ -9,11 +9,14 @@ module Guard
     end
 
     def start
-      `crystal #{File.join(@path, @file)}`
+      @crystal_pid = Kernel.fork do
+        exec("crystal #{File.join(@path, @file)}")
+      end
     end
     
     def stop
-      `$(killall -s SIGINT "crystal-run-app.tmp")`
+      cmd = `$(killall -s SIGINT "crystal-run-app.tmp")`.chomp.strip
+      Kernel.fork { exec(cmd) }
     end
 
     def reload
