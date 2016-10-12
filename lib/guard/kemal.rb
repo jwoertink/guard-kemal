@@ -2,20 +2,22 @@ require 'guard/compat/plugin'
 
 module Guard
   class Kemal < Plugin
+    autoload :Runner, 'guard/kemal/runner'
+    VERSION = "0.1.3"
+
+    attr_reader :runner
+
     def initialize(options = {})
-      @path = options.fetch(:path, '.')
-      @file = options.fetch(:file, 'app.cr')
       super
+      @runner = Runner.new(options)
     end
 
     def start
-      @crystal_pid = Kernel.fork do
-        exec("crystal #{File.join(@path, @file)}")
-      end
+      runner.start!
     end
     
     def stop
-      `$(killall -s SIGINT "crystal-run-#{@file.split('.').first}.tmp")`.chomp.strip
+      runner.stop!
     end
 
     def reload
