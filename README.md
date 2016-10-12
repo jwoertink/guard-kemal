@@ -17,12 +17,19 @@ And then execute:
 
 ## Usage
 
+Setup your `Guardfile` with this:
+
 ```ruby
 #Guardfile
 guard 'kemal', path: 'src', file: 'server.cr' do
-  watch('src/server.cr')
+  watch('src/server.cr') # watch the main kemal server
+  watch(%r{src/.*\.ecr}) # watch your views
 end
 ```
+
+Once you've updated your `Guardfile`, you will just run the `guard` command like normal. Crystal will compile whatever file you specified by the `file` option (in this case "server.cr"), and this file should be located in your `path` option (in this case "./src"). Once Crystal compiles this file, then it will boot that file, and watch whatever you have set to watch. If one of these matched files are changed, guard will kill kemal, recompile the file, then reboot.
+
+If you're using [Slang](https://github.com/jeromegn/slang) for your views, make sure to watch `%r{src/.*\.slang}`. This would watch any file ending in `.slang` located in your `./src/whatever/*.slang` where **whatever** could be something like `views`.
 
 ## Development
 
