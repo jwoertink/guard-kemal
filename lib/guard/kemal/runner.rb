@@ -9,13 +9,14 @@ module Guard
       end
 
       def start!
+        system("crystal build #{filepath}")
         @crystal_pid = Kernel.fork do
-          exec("crystal build #{filepath} && ./#{executable_name}")
+          exec("./#{executable_name}")
         end
       end
 
       def stop!
-        system("kill -2 #{@crystal_pid}")
+        system("kill -9 #{@crystal_pid}")
       end
 
       private
